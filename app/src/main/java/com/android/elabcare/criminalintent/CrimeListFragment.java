@@ -91,7 +91,6 @@ public class CrimeListFragment extends Fragment {
                 getActivity().invalidateOptionsMenu();
                 //显示记录条数
                 updateSubtitle();
-
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
