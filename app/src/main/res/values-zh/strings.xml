@@ -10,5 +10,5 @@
     <string name="new_crime">新建</string>
     <string name="show_subtitle">显示子标题</string>
     <string name="subtitle_format">%1$s 条</string>
-    <string name="delete_crime">Delete Crime</string>
+    <string name="delete_crime">删除</string>
 </resources>
