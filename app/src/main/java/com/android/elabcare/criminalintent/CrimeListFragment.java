@@ -118,6 +118,7 @@ public class CrimeListFragment extends Fragment {
             mAdapter = new CrimeAdapter(crimes);
             mCrimeRecyclerView.setAdapter(mAdapter);
         } else {
+            mAdapter.setCrimes(crimes);
             mAdapter.notifyDataSetChanged();
             updateSubtitle();
         }
@@ -144,7 +145,7 @@ public class CrimeListFragment extends Fragment {
             mCrime = crime;
             mTitleTextView.setText(mCrime.getTitle());
             mDateTextView.setText(mCrime.getDate().toString());
-            mDateTextView.setText(DateFormat.format("yyy年MM月dd日", mCrime.getDate()).toString());
+            mDateTextView.setText(DateFormat.format("yyy年MM月dd日hh时mm分", mCrime.getDate()).toString());
             mSolvedCheckbox.setChecked(mCrime.isSolved());
         }
 
@@ -182,6 +183,10 @@ public class CrimeListFragment extends Fragment {
         @Override
         public int getItemCount() {
             return mCrimes.size();
+        }
+
+        public void setCrimes(List<Crime> crimes) {
+            mCrimes = crimes;
         }
     }
 }
