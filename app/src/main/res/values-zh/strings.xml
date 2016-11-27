@@ -11,4 +11,13 @@
     <string name="show_subtitle">显示子标题</string>
     <string name="subtitle_format">%1$s 条</string>
     <string name="delete_crime">删除</string>
+    <string name="crime_suspect_text">选择人员</string>
+    <string name="crime_report_text">给相关人发送报告</string>
+    <string name="crime_report_no_suspect">没有嫌疑者</string>
+    <string name="crime_report_subject">CriminalIntent  嫌疑报告</string>
+    <string name="crime_report">%1$s! The Crime was discovered on %2$s. %3$s, and %4$s</string>
+    <string name="crime_report_solved">已经解决</string>
+    <string name="crime_report_suspect">怀疑者是 %s。</string>
+    <string name="crime_report_unsolved">没有解决</string>
+    <string name="send_report">发送嫌疑报告：</string>
 </resources>
