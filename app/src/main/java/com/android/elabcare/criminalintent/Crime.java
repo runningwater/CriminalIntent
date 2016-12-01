@@ -59,4 +59,9 @@ public class Crime {
     public void setTitle(String title) {
         mTitle = title;
     }
+
+    //获取文件名
+    public String getPhotoFilename() {
+        return "IMG_" + getId().toString() + ".jpg";
+    }
 }
