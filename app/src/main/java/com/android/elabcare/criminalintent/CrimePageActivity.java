@@ -18,7 +18,7 @@ import java.util.UUID;
  * Created by runningwater on 2016/11/1.
  */
 
-public class CrimePageActivity extends AppCompatActivity {
+public class CrimePageActivity extends AppCompatActivity implements CrimeFragment.Callbacks {
     private static final String TAG = "CrimePageActivity";
     private static final boolean DEBUG = true;
     private static final String EXTRA_CRIME_ID = "com.android.elabcare.criminalintent.crime_id";
@@ -64,6 +64,11 @@ public class CrimePageActivity extends AppCompatActivity {
                 break;
             }
         }
+
+    }
+
+    @Override
+    public void onCrimeUpdate(Crime crime) {
 
     }
 }

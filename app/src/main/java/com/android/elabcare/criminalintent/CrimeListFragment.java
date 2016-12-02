@@ -1,5 +1,6 @@
 package com.android.elabcare.criminalintent;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,7 +15,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
@@ -29,6 +29,19 @@ public class CrimeListFragment extends Fragment {
     private RecyclerView mCrimeRecyclerView;
     private CrimeAdapter mAdapter;
     private boolean mSubtitleVisible;
+    private Callbacks mCallBacks;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mCallBacks = (Callbacks) context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mCallBacks = null;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -84,8 +97,10 @@ public class CrimeListFragment extends Fragment {
             case R.id.menu_item_new_crime:
                 Crime crime = new Crime();
                 CrimeLab.get(getActivity()).addCrime(crime);
-                Intent intent = CrimePageActivity.newIntent(getActivity(), crime.getId());
-                startActivity(intent);
+                //Intent intent = CrimePageActivity.newIntent(getActivity(), crime.getId());
+                //startActivity(intent);
+                updateUI();
+                mCallBacks.onCrimeSelected(crime);
                 return true;
             case R.id.menu_item_show_subtittle:
                 mSubtitleVisible = !mSubtitleVisible;
@@ -111,7 +126,7 @@ public class CrimeListFragment extends Fragment {
         activity.getSupportActionBar().setSubtitle(subtitle);
     }
 
-    private void updateUI() {
+    public void updateUI() {
         CrimeLab crimeLab = CrimeLab.get(getActivity());
         List<Crime> crimes = crimeLab.getCrimes();
 
@@ -124,6 +139,13 @@ public class CrimeListFragment extends Fragment {
             updateSubtitle();
         }
 
+    }
+
+    /**
+     * 回调接口，需要主 activity 实现
+     */
+    public interface Callbacks {
+        void onCrimeSelected(Crime crime);
     }
 
     //Holer 类
@@ -154,8 +176,9 @@ public class CrimeListFragment extends Fragment {
         public void onClick(View v) {
             //Toast.makeText(getActivity(), mCrime.getTitle() + " clicked!", Toast.LENGTH_SHORT).show();
 
-            Intent intent = CrimePageActivity.newIntent(getActivity(), mCrime.getId());
-            startActivity(intent);
+            //Intent intent = CrimePageActivity.newIntent(getActivity(), mCrime.getId());
+            //startActivity(intent);
+            mCallBacks.onCrimeSelected(mCrime);
         }
     }
 
